@@ -44,7 +44,10 @@ end
 
 local function delete_cursor_matches()
   for _, matchid in ipairs(vim.w.trim_cursor_match_ids or {}) do
-    vim.fn.matchdelete(matchid)
+    -- vim.fn.matchdelete(matchid)
+    pcall(function()
+      vim.fn.matchdelete(matchid)
+    end)
   end
   vim.w.trim_cursor_match_ids = nil
 end
